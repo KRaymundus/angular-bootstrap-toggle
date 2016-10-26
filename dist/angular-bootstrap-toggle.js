@@ -56,9 +56,11 @@
 
           // Configuration attributes
           angular.forEach(['on', 'off', 'size', 'onstyle', 'offstyle', 'style'], function (key, index) {
+            //$log.info(key + ':' + $attrs[key]);
             self[key] = angular.isDefined($attrs[key]) ?
               (index < 6 ? $interpolate($attrs[key])($scope.$parent) : $scope.$parent.$eval($attrs[key])) :
               toggleConfig[key];
+            //$log.info(key + ':' + self[key]);
           });
 
           this.init = function (ngModelCtrl_) {
@@ -74,7 +76,6 @@
               $scope.$eval($attrs.ngChange);
             });
           };
-
           this.computeStyle = function () {
             var labels = self.element.find('label');
             angular.element(labels[0]).html(self.on);
@@ -95,11 +96,11 @@
               $scope.wrapperStyle.width = wrapperWidth + 'px';
             }
 
-            if (wrapperHeight < wrapperComputedHeight && self.size !== 'btn-xs' && self.size !== 'btn-sm') {
-              $scope.wrapperStyle.height = wrapperComputedHeight + 'px';
-            } else {
-              $scope.wrapperStyle.height = wrapperHeight + 'px';
-            }
+            // if (wrapperHeight < wrapperComputedHeight && self.size !== 'btn-xs' && self.size !== 'btn-sm') {
+            //   $scope.wrapperStyle.height = wrapperComputedHeight + 'px';
+            // } else {
+            //   $scope.wrapperStyle.height = wrapperHeight + 'px';
+            // }
 
             $scope.onClass = [self.onstyle, self.size, 'toggle-on'];
             $scope.offClass = [self.offstyle, self.size, 'toggle-off'];
@@ -161,15 +162,10 @@
           require: ['toggle', 'ngModel'],
           controller: 'ToggleController',
           controllerAs: 'toggle',
-          compile: function (element, attrs, transclude) {
-            return {
-              pre: function (scope, element, attrs, ctrls) {
-                var toggleCtrl = ctrls[0], ngModelCtrl = ctrls[1];
-                toggleCtrl.element = element;
-                toggleCtrl.init(ngModelCtrl);
-              },
-              post: function () {}
-            }
+          link: function (scope, element, attrs, ctrls) {
+            var toggleCtrl = ctrls[0], ngModelCtrl = ctrls[1];
+            toggleCtrl.element = element;
+            toggleCtrl.init(ngModelCtrl);
           }
         };
       }

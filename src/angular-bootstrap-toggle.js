@@ -76,7 +76,6 @@
               $scope.$eval($attrs.ngChange);
             });
           };
-
           this.computeStyle = function () {
             var labels = self.element.find('label');
             angular.element(labels[0]).html(self.on);
