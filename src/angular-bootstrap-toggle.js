@@ -31,14 +31,14 @@
        * Description: Style of the on toggle.
        * Possible values are btn-default, btn-primary, btn-success, btn-info, btn-warning, btn-danger
        */
-      onstyle: 'btn-primary',
+      btnonstyle: 'btn-primary',
       /**
        * Type: string
        * Default: "btn-default"
        * Description: Style of the off toggle.
        * Possible values are btn-default, btn-primary,btn- success, btn-info, btn-warning, btn-danger
        */
-      offstyle: 'btn-default',
+      btnoffstyle: 'btn-default',
       /**
        * Type: string
        * Default: ''
@@ -55,7 +55,7 @@
             ngModelCtrl = {$setViewValue: angular.noop};
 
           // Configuration attributes
-          angular.forEach(['on', 'off', 'size', 'onstyle', 'offstyle', 'style'], function (key, index) {
+          angular.forEach(['on', 'off', 'size', 'btnonstyle', 'btnoffstyle', 'style'], function (key, index) {
             //$log.info(key + ':' + $attrs[key]);
             self[key] = angular.isDefined($attrs[key]) ?
               (index < 6 ? $interpolate($attrs[key])($scope.$parent) : $scope.$parent.$eval($attrs[key])) :
@@ -102,8 +102,8 @@
             //   $scope.wrapperStyle.height = wrapperHeight + 'px';
             // }
 
-            $scope.onClass = [self.onstyle, self.size, 'toggle-on'];
-            $scope.offClass = [self.offstyle, self.size, 'toggle-off'];
+            $scope.onClass = [self.btnonstyle, self.size, 'toggle-on'];
+            $scope.offClass = [self.btnoffstyle, self.size, 'toggle-off'];
             $scope.handleClass = [self.size, 'toggle-handle'];
           };
 
@@ -114,9 +114,9 @@
               this.isOn = false;
             }
             if (this.isOn) {
-              $scope.wrapperClass = [self.onstyle, self.size, self.style];
+              $scope.wrapperClass = [self.btnonstyle, self.size, self.style];
             } else {
-              $scope.wrapperClass = [self.offstyle, 'off ', self.size, self.style];
+              $scope.wrapperClass = [self.btnoffstyle, 'off ', self.size, self.style];
             }
           };
 
@@ -135,7 +135,7 @@
             });
           });
 
-          angular.forEach(['on', 'off', 'size', 'onstyle', 'offstyle', 'style'], function (key) {
+          angular.forEach(['on', 'off', 'size', 'btnonstyle', 'btnoffstyle', 'style'], function (key) {
             $attrs.$observe(key, function (val) {
               if (self[key] !== val) {
                 self[key] = val;
