@@ -97,11 +97,11 @@
               $scope.wrapperStyle.width = wrapperWidth + 'px';
             }
 
-            if (wrapperHeight < wrapperComputedHeight && self.size !== 'btn-xs' && self.size !== 'btn-sm') {
-              $scope.wrapperStyle.height = wrapperComputedHeight + 'px';
-            } else {
-              $scope.wrapperStyle.height = wrapperHeight + 'px';
-            }
+            // if (wrapperHeight < wrapperComputedHeight && self.size !== 'btn-xs' && self.size !== 'btn-sm') {
+            //   $scope.wrapperStyle.height = wrapperComputedHeight + 'px';
+            // } else {
+            //   $scope.wrapperStyle.height = wrapperHeight + 'px';
+            // }
 
             $scope.onClass = [self.onstyle, self.size, 'toggle-on'];
             $scope.offClass = [self.offstyle, self.size, 'toggle-off'];
